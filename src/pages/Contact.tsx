@@ -8,21 +8,21 @@ const fadeUp = {
 };
 
 const serviceOptions = [
-  "AI / ML",
-  "Cloud Migration",
-  "Data Analytics",
-  "App Development & Maintenance",
+  "AI & Machine Learning",
+  "Cloud Transformation",
+  "Data Engineering & Analytics",
+  "Application Development & Managed Services",
   "General Inquiry",
 ];
 
 const Contact = () => {
   const [formData, setFormData] = useState({
     name: "",
-    company: "",
+    organization: "",
     email: "",
     phone: "",
     service: "",
-    message: "",
+    overview: "",
   });
   const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
   const [errors, setErrors] = useState<Record<string, string>>({});
@@ -30,11 +30,11 @@ const Contact = () => {
   const validate = () => {
     const errs: Record<string, string> = {};
     if (!formData.name.trim()) errs.name = "Name is required";
-    if (!formData.company.trim()) errs.company = "Company is required";
+    if (!formData.organization.trim()) errs.organization = "Organization is required";
     if (!formData.email.trim()) errs.email = "Email is required";
     else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) errs.email = "Invalid email format";
     if (!formData.service) errs.service = "Please select a service";
-    if (!formData.message.trim()) errs.message = "Message is required";
+    if (!formData.overview.trim()) errs.overview = "Project overview is required";
     setErrors(errs);
     return Object.keys(errs).length === 0;
   };
@@ -49,16 +49,16 @@ const Contact = () => {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           name: formData.name.trim(),
-          company: formData.company.trim(),
+          organization: formData.organization.trim(),
           email: formData.email.trim(),
           phone: formData.phone.trim(),
           service: formData.service,
-          message: formData.message.trim(),
+          overview: formData.overview.trim(),
         }),
       });
       if (res.ok) {
         setStatus("success");
-        setFormData({ name: "", company: "", email: "", phone: "", service: "", message: "" });
+        setFormData({ name: "", organization: "", email: "", phone: "", service: "", overview: "" });
       } else {
         setStatus("error");
       }
@@ -86,10 +86,13 @@ const Contact = () => {
         <div className="container mx-auto px-4 lg:px-8">
           <motion.div initial="hidden" animate="visible" className="max-w-3xl">
             <motion.h1 variants={fadeUp} custom={0} className="text-4xl md:text-5xl font-heading font-bold text-primary-foreground mb-6">
-              Let's Build Something <span className="text-gradient-gold">Great Together</span>
+              Let's Build <span className="text-gradient-gold">What's Next</span>
             </motion.h1>
-            <motion.p variants={fadeUp} custom={1} className="text-lg text-primary-foreground/70">
-              Reach out to discuss how Venus Solutions USA can help transform your business with certified MBE technology partnership.
+            <motion.p variants={fadeUp} custom={1} className="text-lg text-primary-foreground/70 leading-relaxed">
+              Whether modernizing infrastructure, implementing AI, or engineering scalable applications, Venus Solutions LLC delivers enterprise-ready solutions with agility and accountability.
+            </motion.p>
+            <motion.p variants={fadeUp} custom={2} className="text-base text-gold/80 font-medium mt-4">
+              Schedule a strategic consultation today.
             </motion.p>
           </motion.div>
         </div>
@@ -104,7 +107,7 @@ const Contact = () => {
                 <motion.div variants={fadeUp} custom={0} className="bg-card rounded-lg p-12 shadow-card text-center">
                   <CheckCircle2 size={48} className="text-gold mx-auto mb-4" />
                   <h3 className="font-heading font-bold text-2xl text-foreground mb-2">Thank You!</h3>
-                  <p className="text-muted-foreground">Our team will be in touch shortly.</p>
+                  <p className="text-muted-foreground">Our team will be in touch shortly to schedule your consultation.</p>
                 </motion.div>
               ) : (
                 <motion.form variants={fadeUp} custom={0} onSubmit={handleSubmit} className="bg-card rounded-lg p-8 shadow-card space-y-5">
@@ -122,9 +125,9 @@ const Contact = () => {
                       {errors.name && <p className="text-destructive text-xs mt-1">{errors.name}</p>}
                     </div>
                     <div>
-                      <label className="block text-sm font-medium text-foreground mb-1.5">Company *</label>
-                      <input name="company" value={formData.company} onChange={handleChange} className={inputClass("company")} maxLength={100} />
-                      {errors.company && <p className="text-destructive text-xs mt-1">{errors.company}</p>}
+                      <label className="block text-sm font-medium text-foreground mb-1.5">Organization *</label>
+                      <input name="organization" value={formData.organization} onChange={handleChange} className={inputClass("organization")} maxLength={100} />
+                      {errors.organization && <p className="text-destructive text-xs mt-1">{errors.organization}</p>}
                     </div>
                     <div>
                       <label className="block text-sm font-medium text-foreground mb-1.5">Email *</label>
@@ -147,9 +150,9 @@ const Contact = () => {
                     {errors.service && <p className="text-destructive text-xs mt-1">{errors.service}</p>}
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-foreground mb-1.5">Message *</label>
-                    <textarea name="message" rows={5} value={formData.message} onChange={handleChange} className={inputClass("message")} maxLength={1000} />
-                    {errors.message && <p className="text-destructive text-xs mt-1">{errors.message}</p>}
+                    <label className="block text-sm font-medium text-foreground mb-1.5">Project Overview *</label>
+                    <textarea name="overview" rows={5} value={formData.overview} onChange={handleChange} className={inputClass("overview")} maxLength={2000} placeholder="Briefly describe your project goals, timeline, and any specific requirements..." />
+                    {errors.overview && <p className="text-destructive text-xs mt-1">{errors.overview}</p>}
                   </div>
                   <button
                     type="submit"
@@ -157,7 +160,7 @@ const Contact = () => {
                     className="inline-flex items-center gap-2 px-8 py-3.5 rounded bg-gold-gradient text-navy-deep font-semibold hover:opacity-90 transition-opacity disabled:opacity-50"
                   >
                     <Send size={18} />
-                    {status === "sending" ? "Sending..." : "Send Message"}
+                    {status === "sending" ? "Sending..." : "Schedule Consultation"}
                   </button>
                 </motion.form>
               )}
@@ -208,10 +211,9 @@ const Contact = () => {
                 </div>
               </motion.div>
 
-              {/* Map */}
               <motion.div variants={fadeUp} custom={2} className="rounded-lg overflow-hidden shadow-card">
                 <iframe
-                  title="Venus Solutions USA Location"
+                  title="Venus Solutions LLC Location"
                   src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3001.5!2d-96.1!3d41.2!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDHCsDEyJzAwLjAiTiA5NsKwMDYnMDAuMCJX!5e0!3m2!1sen!2sus!4v1234567890"
                   width="100%"
                   height="200"

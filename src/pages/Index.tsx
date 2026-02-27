@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Brain, Cloud, BarChart3, Code2, Shield, Clock, Users, Award, ArrowRight, CheckCircle2 } from "lucide-react";
+import { Brain, Cloud, BarChart3, Code2, Shield, Clock, Users, Award, ArrowRight, CheckCircle2, Landmark, Scale, Target, Handshake, Quote } from "lucide-react";
 import heroBg from "@/assets/hero-bg.jpg";
 
 const fadeUp = {
@@ -9,16 +9,37 @@ const fadeUp = {
 };
 
 const services = [
-  { icon: Brain, title: "AI / ML", desc: "Predictive analytics, NLP, and intelligent automation" },
-  { icon: Cloud, title: "Cloud Migration", desc: "AWS, Azure & Google Cloud strategy and migration" },
-  { icon: BarChart3, title: "Data Analytics", desc: "BI dashboards, real-time analytics & data governance" },
-  { icon: Code2, title: "App Development", desc: "Web, mobile & enterprise application development" },
+  { icon: Brain, title: "AI & Machine Learning", desc: "Production-ready AI systems engineered for measurable business outcomes." },
+  { icon: Cloud, title: "Cloud Transformation", desc: "Secure cloud architecture, migration, and modernization at enterprise scale." },
+  { icon: BarChart3, title: "Data Engineering & Analytics", desc: "High-performance data platforms that power strategic decisions." },
+  { icon: Code2, title: "Application Development & Managed Services", desc: "Custom software solutions designed for scalability and long-term maintainability." },
 ];
 
 const whyUs = [
-  { icon: Shield, title: "NMSDC Certified MBE Partner", desc: "Helping clients meet supplier diversity goals with certified minority business partnership" },
-  { icon: Clock, title: "19+ Years Experience", desc: "Nearly two decades of delivering enterprise IT solutions across industries" },
-  { icon: Users, title: "End-to-End Support", desc: "From strategy to implementation and ongoing maintenance" },
+  { icon: Award, title: "Certified Minority Business Enterprise (MBE)" },
+  { icon: Users, title: "Minority-Led | Woman-Owned" },
+  { icon: Landmark, title: "Architect-Led Engagements" },
+  { icon: Shield, title: "Structured Governance & Risk Controls" },
+  { icon: Handshake, title: "Scalable Delivery Through Strategic Alliances" },
+  { icon: Target, title: "Business-Outcome Focused Execution" },
+];
+
+const testimonials = [
+  {
+    quote: "Venus Solutions demonstrated strong architectural leadership and execution discipline. Their structured approach gave us confidence throughout our transformation initiative.",
+    author: "Director of Technology",
+    org: "Private Healthcare Network",
+  },
+  {
+    quote: "The team delivered enterprise-level strategy with startup agility. Their governance framework minimized risk while accelerating delivery.",
+    author: "VP Engineering",
+    org: "SaaS Organization",
+  },
+  {
+    quote: "They approached our data modernization initiative with clarity, depth, and measurable impact.",
+    author: "Chief Data Officer",
+    org: "Financial Services Firm",
+  },
 ];
 
 const stats = [
@@ -32,43 +53,40 @@ const Index = () => {
   return (
     <main>
       {/* Hero */}
-      <section
-        className="relative min-h-[90vh] flex items-center bg-hero-gradient overflow-hidden"
-      >
+      <section className="relative min-h-[90vh] flex items-center bg-hero-gradient overflow-hidden">
         <div
           className="absolute inset-0 opacity-40"
           style={{ backgroundImage: `url(${heroBg})`, backgroundSize: "cover", backgroundPosition: "center" }}
         />
         <div className="absolute inset-0 bg-hero-gradient opacity-70" />
         <div className="container mx-auto px-4 lg:px-8 relative z-10 py-32">
-          <motion.div
-            initial="hidden"
-            animate="visible"
-            className="max-w-3xl"
-          >
+          <motion.div initial="hidden" animate="visible" className="max-w-3xl">
             <motion.div variants={fadeUp} custom={0} className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-gold/30 bg-navy-light/30 backdrop-blur mb-8">
               <Award size={16} className="text-gold" />
               <span className="text-sm text-gold font-medium">NMSDC Certified MBE & Woman-Owned Business</span>
             </motion.div>
             <motion.h1 variants={fadeUp} custom={1} className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold text-primary-foreground leading-tight mb-6">
-              Transforming Businesses Through{" "}
-              <span className="text-gradient-gold">Innovative IT Solutions</span>
+              Enterprise-Grade Technology Solutions.{" "}
+              <span className="text-gradient-gold">Built for Scale. Delivered with Precision.</span>
             </motion.h1>
-            <motion.p variants={fadeUp} custom={2} className="text-lg text-primary-foreground/70 max-w-2xl mb-10 leading-relaxed">
-              An NMSDC Certified Minority Business Enterprise and Woman-Owned Business specializing in IT Software Consultancy and Implementation across the USA and India.
+            <motion.p variants={fadeUp} custom={2} className="text-lg text-primary-foreground/70 max-w-2xl mb-4 leading-relaxed">
+              Venus Solutions LLC is a certified Minority Business Enterprise (MBE) delivering AI/ML, Cloud, Data Analytics, and Application Development services to mid-market and enterprise organizations.
+            </motion.p>
+            <motion.p variants={fadeUp} custom={2.5} className="text-base text-gold/80 font-medium mb-10">
+              Architect-led. Outcome-driven. Enterprise-ready.
             </motion.p>
             <motion.div variants={fadeUp} custom={3} className="flex flex-wrap gap-4">
               <Link
-                to="/services"
+                to="/contact"
                 className="inline-flex items-center gap-2 px-7 py-3.5 rounded bg-gold-gradient text-navy-deep font-semibold hover:opacity-90 transition-opacity"
               >
-                Explore Our Services <ArrowRight size={18} />
+                Schedule a Consultation <ArrowRight size={18} />
               </Link>
               <Link
-                to="/contact"
+                to="/services"
                 className="inline-flex items-center gap-2 px-7 py-3.5 rounded border border-gold/40 text-primary-foreground font-semibold hover:bg-gold/10 transition-colors"
               >
-                Get A Quote
+                Explore Our Services
               </Link>
             </motion.div>
           </motion.div>
@@ -82,7 +100,7 @@ const Index = () => {
             <CheckCircle2 size={18} /> NMSDC Certified MBE
           </div>
           <div className="flex items-center gap-2 font-semibold text-sm">
-            <CheckCircle2 size={18} /> Woman-Owned Business
+            <CheckCircle2 size={18} /> Minority-Led & Woman-Owned
           </div>
           <div className="flex items-center gap-2 font-semibold text-sm">
             <CheckCircle2 size={18} /> IT Software Consultancy & Implementation
@@ -90,16 +108,33 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Services Snapshot */}
+      {/* Who We Are */}
       <section className="py-20 bg-background">
+        <div className="container mx-auto px-4 lg:px-8">
+          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} className="max-w-4xl mx-auto text-center">
+            <motion.h2 variants={fadeUp} custom={0} className="text-3xl md:text-4xl font-heading font-bold text-foreground mb-6">
+              Who We Are
+            </motion.h2>
+            <motion.p variants={fadeUp} custom={1} className="text-muted-foreground leading-relaxed mb-6">
+              Venus Solutions LLC is a technology consulting and implementation firm focused on designing and delivering secure, scalable, and performance-driven digital solutions.
+            </motion.p>
+            <motion.p variants={fadeUp} custom={2} className="text-muted-foreground leading-relaxed mb-6">
+              We operate with startup agility while applying enterprise governance, structured delivery frameworks, and scalable strategic partnerships to support complex technology initiatives.
+            </motion.p>
+            <motion.p variants={fadeUp} custom={3} className="text-muted-foreground leading-relaxed">
+              Certified by the National Minority Supplier Development Council (NMSDC), we help organizations achieve both digital transformation and supplier diversity objectives.
+            </motion.p>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Services Snapshot */}
+      <section className="py-20 bg-muted/50">
         <div className="container mx-auto px-4 lg:px-8">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} className="text-center mb-14">
             <motion.h2 variants={fadeUp} custom={0} className="text-3xl md:text-4xl font-heading font-bold text-foreground mb-4">
               Our Core Services
             </motion.h2>
-            <motion.p variants={fadeUp} custom={1} className="text-muted-foreground max-w-2xl mx-auto">
-              End-to-end IT Software Consultancy & Implementation solutions tailored for enterprise needs
-            </motion.p>
           </motion.div>
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {services.map((s, i) => (
@@ -117,25 +152,27 @@ const Index = () => {
               </motion.div>
             ))}
           </motion.div>
+          <div className="text-center mt-10">
+            <Link to="/services" className="inline-flex items-center gap-2 text-gold font-semibold hover:underline">
+              View All Services <ArrowRight size={16} />
+            </Link>
+          </div>
         </div>
       </section>
 
-      {/* Why Choose Us */}
-      <section className="py-20 bg-muted/50">
+      {/* Why Venus Solutions */}
+      <section className="py-20 bg-background">
         <div className="container mx-auto px-4 lg:px-8">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} className="text-center mb-14">
             <motion.h2 variants={fadeUp} custom={0} className="text-3xl md:text-4xl font-heading font-bold text-foreground mb-4">
-              Why Choose Venus Solutions
+              Why Venus Solutions LLC
             </motion.h2>
           </motion.div>
-          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-4xl mx-auto">
             {whyUs.map((item, i) => (
-              <motion.div key={item.title} variants={fadeUp} custom={i} className="text-center p-8">
-                <div className="w-16 h-16 rounded-full bg-gold/10 border border-gold/30 flex items-center justify-center mx-auto mb-5">
-                  <item.icon size={28} className="text-gold" />
-                </div>
-                <h3 className="font-heading font-semibold text-xl text-foreground mb-3">{item.title}</h3>
-                <p className="text-muted-foreground text-sm">{item.desc}</p>
+              <motion.div key={item.title} variants={fadeUp} custom={i} className="flex items-center gap-3 p-5 bg-card rounded-lg shadow-card border-l-4 border-gold">
+                <item.icon size={22} className="text-gold shrink-0" />
+                <span className="font-medium text-foreground text-sm">{item.title}</span>
               </motion.div>
             ))}
           </motion.div>
@@ -156,13 +193,36 @@ const Index = () => {
         </div>
       </section>
 
+      {/* Testimonials */}
+      <section className="py-20 bg-muted/50">
+        <div className="container mx-auto px-4 lg:px-8">
+          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} className="text-center mb-14">
+            <motion.h2 variants={fadeUp} custom={0} className="text-3xl md:text-4xl font-heading font-bold text-foreground mb-4">
+              Client Testimonials
+            </motion.h2>
+          </motion.div>
+          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {testimonials.map((t, i) => (
+              <motion.div key={i} variants={fadeUp} custom={i} className="bg-card rounded-lg p-8 shadow-card border-t-4 border-gold relative">
+                <Quote size={32} className="text-gold/20 absolute top-4 right-4" />
+                <p className="text-muted-foreground text-sm leading-relaxed mb-6 italic">"{t.quote}"</p>
+                <div>
+                  <p className="font-semibold text-foreground text-sm">{t.author}</p>
+                  <p className="text-xs text-muted-foreground">{t.org}</p>
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
       {/* CTA Banner */}
       <section className="py-20 bg-gold-gradient">
         <div className="container mx-auto px-4 lg:px-8 text-center">
           <h2 className="text-3xl md:text-4xl font-heading font-bold text-navy-deep mb-4">
             Ready to Transform Your Business?
           </h2>
-          <p className="text-navy-deep/70 mb-8 text-lg">Let's Talk.</p>
+          <p className="text-navy-deep/70 mb-8 text-lg">Schedule a strategic consultation today.</p>
           <div className="flex flex-wrap justify-center gap-4">
             <Link
               to="/contact"
